@@ -1,0 +1,21 @@
+services:
+  cimg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "127.0.0.1:${CIMG_ELY_PORT}:${CIMG_ELY_PORT}"
+
+    volumes:
+      - cimg-data:/app/data
+      - cimg-images:/app/images
+
+volumes:
+  cimg-data:
+  cimg-images:
